@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Para Ela ❤️</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+      }
+
+      .slideshow-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        /*Altura do container das imagens*/
+        height: 730px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 150%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 90%;
+        object-fit: cover;
+      }
+
+      .phrase {
+        margin-top: 20px;
+        font-size: 1.6rem;
+        text-align: center;
+        max-width: 90%;
+        color: #ff99cc;
+        animation: fadeIn 2s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slideshow-container">
+      <div class="slide active">
+        <img src="img1.jpeg" alt="Imagem 1" />
+      </div>
+      <div class="slide">
+        <img src="img2.jpeg" alt="Imagem 2" />
+      </div>
+      <div class="slide">
+        <img src="img3.jpeg" alt="Imagem 3" />
+      </div>
+      <div class="slide">
+        <img src="img4.jpeg" alt="imagem 4" />
+      </div>
+      <div class="slide">
+        <img src="img5.jpeg" alt="imgagem 5" />
+      </div>
+    </div>
+
+    <div class="phrase" id="phrase">
+      Você é a minha casa, meu refúgio, meu tudo.
+    </div>
+
+    <script>
+      //pega todos os documentos com o class slide e adiciona a const slides
+      const slides = document.querySelectorAll(".slide");
+      const phraseElement = document.getElementById("phrase");
+
+      const phrases = [
+        "Você é a razão do meu sorriso.",
+        "Só de olhar para você, tudo ao meu redor faz sentido.",
+        "Eu amei você de uma forma que ninguém mais jamais amou.",
+        "Você me ensinou que amar é um risco que vale a pena correr.",
+        "Eu escolheria você em qualquer vida, em qualquer tempo, em qualquer mundo.",
+      ];
+
+      let current = 0;
+
+      setInterval(() => {
+        // Troca imagem
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+
+        // Troca frase
+        phraseElement.textContent = phrases[current];
+      }, 3000);
+    </script>
+  </body>
+</html>
